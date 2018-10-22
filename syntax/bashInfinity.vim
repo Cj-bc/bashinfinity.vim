@@ -48,7 +48,7 @@ hi def link bashinfinityCatch Exception
 hi def link bashinfinityException Exception
 hi def link bashinfinityNamedParam Type
 hi def link bashinfinityType Type
-hi def link bashinfinityStrageClass StrageClass
+hi def link bashinfinityStorageClass StorageClass
 hi def link bashinfinityClassMethod Function
 hi def link bashinfinityClassDefinition Function
 hi def link bashinfinityObjectmethod Function
