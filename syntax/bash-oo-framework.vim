@@ -25,6 +25,7 @@ syn keyword bashooType string array integer map boolean
 " match {{{1
 syn match bashooClassMethod '[^:]*::.*'
 syn match bashooClassDefinition 'class:[^(]*()'
+syn match bashooObjectmethod '.*\..*'
 syn match bashooNamespace 'namespace *'
 
 " region {{{1
@@ -40,6 +41,8 @@ hi def link bashooCatch Exception
 hi def link bashooException Exception
 hi def link bashooNamedParam Type
 hi def link bashooType Type
+hi def link bashooStrageClass StrageClass
 hi def link bashooClassMethod Function
 hi def link bashooClassDefinition Function
+hi def link bashooObjectmethod Function
 " vim: ts=16 fdm=marker
