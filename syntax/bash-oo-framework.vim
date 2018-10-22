@@ -27,8 +27,8 @@ syn match bashooClassDefinition 'class:[^(]*()'
 syn match bashooNamespace 'namespace *'
 
 " region {{{1
-syn region bashooTryReg start="try {" end="}"
-syn region bashooCatchReg start="catch {" end="}"
+syn region bashooTryReg start=/try {/ end=/}/
+syn region bashooCatchReg start=/catch {/ end=/}/
 "syn region bashoo 'namespace *'
 
 hi def link bashooImport Include
