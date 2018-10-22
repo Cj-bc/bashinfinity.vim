@@ -5,7 +5,7 @@
 " For options and settings, please use:      :help ft-sh-syntax
 
 " quit when a syntax file was already loaded {{{1
-if exists("b:current_syntax") && b:current_syntax != "bash"
+if exists('b:current_syntax')
   finish
 endif
 
