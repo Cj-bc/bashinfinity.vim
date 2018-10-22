@@ -41,6 +41,30 @@ syn region bashinfinityCatchReg start=/catch *{/ms=e+1 end=/}/me=s-1 contains=AL
 syn region bashinfinityMethodReg start=/[^(]*()\s*{/ms=e+1 end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
 syn region bashinfinityClassReg start=/class:[^(]*()\s*{/ms=e+1 end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass
 
+" Synchronization: {{{1
+if !exists("g:sh_minlines")
+ let s:sh_minlines = 200
+else
+ let s:sh_minlines= g:sh_minlines
+endif
+if !exists("g:sh_maxlines")
+ let s:sh_maxlines = 2*s:sh_minlines
+ if s:sh_maxlines < 25
+  let s:sh_maxlines= 25
+ endif
+else
+ let s:sh_maxlines= g:sh_maxlines
+endif
+exec "syn sync minlines=" . s:sh_minlines . " maxlines=" . s:sh_maxlines
+syn sync match bashinfinityTrySync grouphere bashinfinityTryReg /try {/
+syn sync match bashinfinityTrySync groupthere bashinfinityTryReg /}/
+syn sync match bashinfinityCatchSync grouphere bashinfinityCatchReg /}\s*catch\s*{/
+syn sync match bashinfinityCatchSync groupthere bashinfinityCatchReg /}/
+syn sync match bashinfinityMethodSync grouphere bashinfinityMethodReg /[^(]*()\s*{/
+syn sync match bashinfinityMethodSync groupthere bashinfinityMethodReg /}/
+syn sync match bashinfinityClassSync grouphere bashinfinityClassReg /class:[^(]*() {/
+syn sync match bashinfinityClassSync groupthere bashinfinityClassReg /}/
+
 "syn region bashinfinity 'namespace *'
 
 hi def link bashinfinityImport Include
