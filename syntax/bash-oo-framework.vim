@@ -21,4 +21,9 @@ syn keyword bashooException throw
 syn keyword bashooNamedParam "\[string\]" "\[array\]" "\[integer\]" "\[map\]" "[boolean]"
 syn keyword bashooType string array integer map boolean
 
+" match {{{1
+syn match bashooClassMethod '[^:]*::[^(]*()'
+syn match bashooClassDefinition 'class:[^(]*()'
+syn match bashooNamespace 'namespace *'
+
 " vim: ts=16 fdm=marker
