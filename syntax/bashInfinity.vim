@@ -25,7 +25,7 @@ syn keyword bashinfinityLog namespace Log
 syn keyword bashinfinityTry try nextgroup=bashinfinityTryReg skipwhite
 syn keyword bashinfinityCatch catch nextgroup=bashinfinityCatchReg skipwhite
 syn keyword bashinfinityException throw
-syn keyword bashinfinityNamedParam "\[string\]" "\[array\]" "\[integer\]" "\[map\]" "\[boolean\]"
+syn keyword bashinfinityNamedParam "[string]" "[array]" "[integer]" "[map]" "[boolean]"
 syn keyword bashinfinityType string array integer map boolean
 syn keyword bashinfinityStorageClass private public nextgroup=bashinfinityType skipwhite
 
@@ -36,8 +36,8 @@ syn match bashinfinityObjectmethod '.*\.[^(]*'
 syn match bashinfinityNamespace 'namespace *'
 
 " region {{{1
-syn region bashinfinityTryReg start=/try *{/ms=e+1 end=/}/me=s-1 contains=ALL
-syn region bashinfinityCatchReg start=/catch *{/ms=e+1 end=/}/me=s-1 contains=ALL
+syn region bashinfinityTryReg start=/^\s*try *{/ms=e+1 end=/}/me=s-1 contains=ALL
+syn region bashinfinityCatchReg start=/}\s*catch\s*{/ms=e+1 end=/}/me=s-1 contains=ALL
 syn region bashinfinityMethodReg start=/[^(]*()\s*{/ms=e+1 end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
 syn region bashinfinityClassReg start=/class:[^(]*()\s*{/ms=e+1 end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass
 
