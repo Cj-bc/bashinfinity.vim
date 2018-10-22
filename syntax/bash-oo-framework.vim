@@ -30,4 +30,11 @@ syn match bashooNamespace 'namespace *'
 syn region bashooTryReg start="try {" end="}"
 syn region bashooCatchReg start="catch {" end="}"
 "syn region bashoo 'namespace *'
+
+hi def link bashooTry Statement
+hi def link bashooLog Statement
+hi def link bashooImport Include
+hi def link bashooException Statement
+hi def link bashooNamedParam Type
+hi def link bashooType Type
 " vim: ts=16 fdm=marker
