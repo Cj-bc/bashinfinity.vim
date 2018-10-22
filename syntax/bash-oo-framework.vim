@@ -21,6 +21,7 @@ syn keyword bashooCatch catch nextgroup=bashooCatchReg
 syn keyword bashooException throw
 syn keyword bashooNamedParam "\[string\]" "\[array\]" "\[integer\]" "\[map\]" "[boolean]"
 syn keyword bashooType string array integer map boolean
+syn keyword bashooStrageClass private public nextgroup=bashooType
 
 " match {{{1
 syn match bashooClassDefinition 'class:[^(]*()'
