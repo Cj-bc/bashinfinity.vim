@@ -36,9 +36,11 @@ syn match bashinfinityObjectmethod '.*\.[^(]*'
 syn match bashinfinityNamespace 'namespace *'
 
 " region {{{1
-syn region bashinfinityTryReg start=/{/ms=e+1 end=/}/me=s-1 contains=ALL
-syn region bashinfinityCatchReg start=/{/ms=e+1 end=/}/me=s-1 contains=ALL
-syn region bashinfinityClassReg start=/{/ms=e+1 end=/}/me=s-1 contains=bashinfinityClassMethod,bashinfinityClassDefinition,bashinfinityStrageClass,bashinfinityObjectmethod
+syn region bashinfinityTryReg start=/try *{/ms=e+1 end=/}/me=s-1 contains=ALL
+syn region bashinfinityCatchReg start=/catch *{/ms=e+1 end=/}/me=s-1 contains=ALL
+syn region bashinfinityMethodReg start=/[^(]*()\s*{/ms=e+1 end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
+syn region bashinfinityClassReg start=/class:[^(]*()\s*{/ms=e+1 end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass
+
 "syn region bashinfinity 'namespace *'
 
 hi def link bashinfinityImport Include
