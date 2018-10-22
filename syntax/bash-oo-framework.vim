@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language:		Bash with bash-oo-framework
-" Last Change:		Oct 18 2018
+" Last Change:		Oct 22 2018
 " Version:		0.0.1
 " For options and settings, please use:      :help ft-sh-syntax
 
