@@ -16,8 +16,8 @@ runtime syntax/sh.vim
 
 
 " cluster {{{1
-"syn cluster shFunctionlist add=bashooLog,bashooClassMethod,bashooClassDefinition,bashooNamedParam
-
+syn cluster bashinfinityClass contains=bashinfinityStorageClass,bashinfinityClassDefinition,bashinfinityClassReg
+syn cluster bashinfinityMethod contains=bashinfinityMethodReg
 
 " keywords {{{1
 syn keyword bashinfinityImport import
