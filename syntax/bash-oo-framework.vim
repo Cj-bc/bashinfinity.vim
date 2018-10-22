@@ -14,11 +14,11 @@ runtime syntax/sh.vim
 
 
 " keywords {{{1
-syn keyword ooImport import
-syn keyword ooLog namespace Log
-syn keyword ooTry try catch
-syn keyword ooException throw
-syn keyword ooNamedParam [string] [array] [integer] [map] [boolean]
-syn keyword ooType string array integer map boolean
+syn keyword bashooImport import
+syn keyword bashooLog namespace Log
+syn keyword bashooTry try catch
+syn keyword bashooException throw
+syn keyword bashooNamedParam "\[string\]" "\[array\]" "\[integer\]" "\[map\]" "[boolean]"
+syn keyword bashooType string array integer map boolean
 
 " vim: ts=16 fdm=marker
