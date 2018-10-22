@@ -53,4 +53,7 @@ hi def link bashooObjectmethod Function
 "hi def link bashooNamespace 
 
 
+" Set Current Syntax: {{{1
+let b:current_syntax = 'bashinfinity'
+
 " vim: ts=16 fdm=marker
