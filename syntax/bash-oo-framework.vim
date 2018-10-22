@@ -37,4 +37,6 @@ hi def link bashooTry Exception
 hi def link bashooException Exception
 hi def link bashooNamedParam Type
 hi def link bashooType Type
+hi def link bashooClassMethod Function
+hi def link bashooClassDefinition Function
 " vim: ts=16 fdm=marker
