@@ -11,7 +11,7 @@ if exists('b:current_syntax')
   finish
 endif
 
-" include default sh syntax file
+" include default sh syntax file {{{1
 runtime syntax/sh.vim
 
 
@@ -67,6 +67,7 @@ syn sync match bashinfinityClassSync groupthere bashinfinityClassReg /}/
 
 "syn region bashinfinity 'namespace *'
 
+" Default Highlighting: {{{1
 hi def link bashinfinityImport Include
 hi def link bashinfinityLog Statement
 hi def link bashinfinityTry Exception
