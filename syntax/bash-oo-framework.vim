@@ -26,4 +26,8 @@ syn match bashooClassMethod '[^:]*::[^(]*()'
 syn match bashooClassDefinition 'class:[^(]*()'
 syn match bashooNamespace 'namespace *'
 
+" region {{{1
+syn region bashooTryReg start="try {" end="}"
+syn region bashooCatchReg start="catch {" end="}"
+"syn region bashoo 'namespace *'
 " vim: ts=16 fdm=marker
