@@ -23,9 +23,9 @@ syn keyword bashooNamedParam "\[string\]" "\[array\]" "\[integer\]" "\[map\]" "[
 syn keyword bashooType string array integer map boolean
 
 " match {{{1
-syn match bashooClassMethod '[^:]*::.*'
 syn match bashooClassDefinition 'class:[^(]*()'
-syn match bashooObjectmethod '.*\..*'
+syn match bashooClassMethod '[^:]*::[^(]*'
+syn match bashooObjectmethod '.*\.[^(]*'
 syn match bashooNamespace 'namespace *'
 
 " region {{{1
