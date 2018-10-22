@@ -24,8 +24,8 @@ syn keyword bashooType string array integer map boolean
 syn keyword bashooStrageClass private public nextgroup=bashooType
 
 " match {{{1
-syn match bashooClassDefinition 'class:[^(]*()'
 syn match bashooClassMethod '[^:]*::[^(]*'
+syn match bashooClassDefinition 'class:[^(]*()' nextgroup=bashooClassReg
 syn match bashooObjectmethod '.*\.[^(]*'
 syn match bashooNamespace 'namespace *'
 
