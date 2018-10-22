@@ -20,39 +20,39 @@ runtime syntax/sh.vim
 
 
 " keywords {{{1
-syn keyword bashooImport import
-syn keyword bashooLog namespace Log
-syn keyword bashooTry try nextgroup=bashooTryReg
-syn keyword bashooCatch catch nextgroup=bashooCatchReg
-syn keyword bashooException throw
-syn keyword bashooNamedParam "\[string\]" "\[array\]" "\[integer\]" "\[map\]" "\[boolean\]"
-syn keyword bashooType string array integer map boolean
-syn keyword bashooStrageClass private public nextgroup=bashooType
+syn keyword bashinfinityImport import
+syn keyword bashinfinityLog namespace Log
+syn keyword bashinfinityTry try nextgroup=bashinfinityTryReg
+syn keyword bashinfinityCatch catch nextgroup=bashinfinityCatchReg
+syn keyword bashinfinityException throw
+syn keyword bashinfinityNamedParam "\[string\]" "\[array\]" "\[integer\]" "\[map\]" "\[boolean\]"
+syn keyword bashinfinityType string array integer map boolean
+syn keyword bashinfinityStrageClass private public nextgroup=bashinfinityType
 
 " match {{{1
-syn match bashooClassMethod '[^:]*::[^(]*'
-syn match bashooClassDefinition 'class:[^(]*()' nextgroup=bashooClassReg
-syn match bashooObjectmethod '.*\.[^(]*'
-syn match bashooNamespace 'namespace *'
+syn match bashinfinityClassMethod '[^:]*::[^(]*'
+syn match bashinfinityClassDefinition 'class:[^(]*()' nextgroup=bashinfinityClassReg
+syn match bashinfinityObjectmethod '.*\.[^(]*'
+syn match bashinfinityNamespace 'namespace *'
 
 " region {{{1
-syn region bashooTryReg start=/{/ms=e+1 end=/}/me=s-1 contains=ALL
-syn region bashooCatchReg start=/{/ms=e+1 end=/}/me=s-1 contains=ALL
-syn region bashooClassReg start=/{/ms=e+1 end=/}/me=s-1 contains=bashooClassMethod,bashooClassDefinition,bashooStrageClass,bashooObjectmethod
-"syn region bashoo 'namespace *'
+syn region bashinfinityTryReg start=/{/ms=e+1 end=/}/me=s-1 contains=ALL
+syn region bashinfinityCatchReg start=/{/ms=e+1 end=/}/me=s-1 contains=ALL
+syn region bashinfinityClassReg start=/{/ms=e+1 end=/}/me=s-1 contains=bashinfinityClassMethod,bashinfinityClassDefinition,bashinfinityStrageClass,bashinfinityObjectmethod
+"syn region bashinfinity 'namespace *'
 
-hi def link bashooImport Include
-hi def link bashooLog Statement
-hi def link bashooTry Exception
-hi def link bashooCatch Exception
-hi def link bashooException Exception
-hi def link bashooNamedParam Type
-hi def link bashooType Type
-hi def link bashooStrageClass StrageClass
-hi def link bashooClassMethod Function
-hi def link bashooClassDefinition Function
-hi def link bashooObjectmethod Function
-"hi def link bashooNamespace 
+hi def link bashinfinityImport Include
+hi def link bashinfinityLog Statement
+hi def link bashinfinityTry Exception
+hi def link bashinfinityCatch Exception
+hi def link bashinfinityException Exception
+hi def link bashinfinityNamedParam Type
+hi def link bashinfinityType Type
+hi def link bashinfinityStrageClass StrageClass
+hi def link bashinfinityClassMethod Function
+hi def link bashinfinityClassDefinition Function
+hi def link bashinfinityObjectmethod Function
+"hi def link bashinfinityNamespace
 
 
 " Set Current Syntax: {{{1
