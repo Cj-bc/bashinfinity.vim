@@ -13,13 +13,17 @@ endif
 runtime syntax/sh.vim
 
 
+" cluster {{{1
+"syn cluster shFunctionlist add=bashooLog,bashooClassMethod,bashooClassDefinition,bashooNamedParam
+
+
 " keywords {{{1
 syn keyword bashooImport import
 syn keyword bashooLog namespace Log
 syn keyword bashooTry try nextgroup=bashooTryReg
 syn keyword bashooCatch catch nextgroup=bashooCatchReg
 syn keyword bashooException throw
-syn keyword bashooNamedParam "\[string\]" "\[array\]" "\[integer\]" "\[map\]" "[boolean]"
+syn keyword bashooNamedParam "\[string\]" "\[array\]" "\[integer\]" "\[map\]" "\[boolean\]"
 syn keyword bashooType string array integer map boolean
 syn keyword bashooStrageClass private public nextgroup=bashooType
 
@@ -46,4 +50,7 @@ hi def link bashooStrageClass StrageClass
 hi def link bashooClassMethod Function
 hi def link bashooClassDefinition Function
 hi def link bashooObjectmethod Function
+"hi def link bashooNamespace 
+
+
 " vim: ts=16 fdm=marker
