@@ -36,22 +36,18 @@ syn match bashinfinityObjectmethod '.*\.[^(]*'
 syn match bashinfinityNamespace 'namespace *'
 
 " region {{{1
-syn region bashinfinityTryReg matchgroup=bashinfinityTryRegOpen start=/try *{/ms=e+1 matchgroup=bashinfinityTryRegClose end=/}/me=s-1
+syn region bashinfinityTryReg matchgroup=bashinfinityTryRegOpen start=/try *{/ms=e+1 matchgroup=Delimiter end=/}/me=s-1
                                 \ contains=ALL nextgroup=bashinfinityTryRegClose transparent
-syn region bashinfinityCatchReg matchgroup=bashinfinityCatchRegOpen start=/\s*catch\s*{/ms=e+1 matchgroup=bashinfinityCatchRegClose end=/}/me=s-1
+syn region bashinfinityCatchReg matchgroup=bashinfinityCatchRegOpen start=/\s*catch\s*{/ms=e+1 matchgroup=Delimiter end=/}/me=s-1
                                 \ contains=ALL nextgroup=bashinfinityCatchRegClose transparent
 syn region bashinfinityMethodReg matchgroup=bashinfinityMethodRegOpen start=/[^(]*()\s*{/ms=e+1 matchgroup=Delimiter end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
 syn region bashinfinityClassReg matchgroup=bashinfinityClassRegOpen start=/class:[^(]*()\s*{/ms=e+1  matchgroup=Delimiter end=/}/me=s-1 contains=ALL
 
 " region delimiters {{{2
-syn match bashinfinityTryRegOpen /try\s*{/ nextgroup=bashinfinityTryReg contains=bashinfinityTry
-syn match bashinfinityTryRegClose /}/
-syn match bashinfinityCatchRegOpen /\s*catch\s*{/ nextgroup=bashinfinityCatchReg contains=bashinfinityCatch
-syn match bashinfinityCatchRegClose /}/
-syn match bashinfinityMethodRegOpen /[^(]*() *{/ nextgroup=bashinfinityMethodReg contains=bashinfinityMethod
-syn match bashinfinityMethodRegClose /}/
-syn match bashinfinityClassRegOpen /class:[^(]*()\s*{/ nextgroup=bashinfinityClassReg contains=bashinfinityClass
-syn match bashinfinityClassRegClose /}/
+syn match bashinfinityTryRegOpen /try\s*{/ nextgroup=bashinfinityTryReg contains=bashinfinityTry,Delimiter
+syn match bashinfinityCatchRegOpen /\s*catch\s*{/ nextgroup=bashinfinityCatchReg contains=bashinfinityCatch,Delimiter
+syn match bashinfinityMethodRegOpen /[^(]*() *{/ nextgroup=bashinfinityMethodReg contains=bashinfinityMethod,Delimiter
+syn match bashinfinityClassRegOpen /class:[^(]*()\s*{/ nextgroup=bashinfinityClassReg contains=bashinfinityClassDefinition,Delimiter
 
 
 " Synchronization: {{{1
@@ -70,15 +66,12 @@ else
 endif
 exec "syn sync minlines=" . s:sh_minlines . " maxlines=" . s:sh_maxlines
 syn sync match bashinfinityTrySync grouphere bashinfinityTryReg /try {/
-syn sync match bashinfinityTrySync groupthere bashinfinityTryReg /}/
 syn sync match bashinfinityCatchSync grouphere bashinfinityCatchReg /}\s*catch\s*{/
-syn sync match bashinfinityCatchSync groupthere bashinfinityCatchReg /}/
 syn sync match bashinfinityMethodSync grouphere bashinfinityMethodReg /[^(]*()\s*{/
-syn sync match bashinfinityMethodSync groupthere bashinfinityMethodReg /}/
 syn sync match bashinfinityClassSync grouphere bashinfinityClassReg /class:[^(]*() {/
-syn sync match bashinfinityClassSync groupthere bashinfinityClassReg /}/
 
 "syn region bashinfinity 'namespace *'
+
 
 " Default Highlighting: {{{1
 hi def link bashinfinityImport Include
