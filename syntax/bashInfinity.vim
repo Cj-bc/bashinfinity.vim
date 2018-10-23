@@ -31,12 +31,12 @@ syn keyword bashinfinityAccess private public nextgroup=bashinfinityType skipwhi
 
 " match {{{1
 syn match bashinfinityClassMethod '[^:]*::[^(]*'
-syn match bashinfinityClassDefinition 'class:[^(]*()' nextgroup=bashinfinityClassReg skipwhite
+syn match bashinfinityClassDefinition 'class:[^(]*()'
 syn match bashinfinityObjectmethod '.*\.[^(]*'
 syn match bashinfinityNamespace 'namespace *'
 
 " region {{{1
-syn region bashinfinityTryReg matchgroup=bashinfinityTryRegOpen start=/try *{/ms=e+1 matchgroup=Delimiter end=/}/me=s-1
+syn region bashinfinityTryReg matchgroup=bashinfinityTryRegOpen start=/try\s*{/ms=e+1 matchgroup=Delimiter end=/}/me=s-1
                                 \ contains=ALL nextgroup=bashinfinityTryRegClose transparent
 syn region bashinfinityCatchReg matchgroup=bashinfinityCatchRegOpen start=/\s*catch\s*{/ms=e+1 matchgroup=Delimiter end=/}/me=s-1
                                 \ contains=ALL nextgroup=bashinfinityCatchRegClose transparent
@@ -66,7 +66,7 @@ else
 endif
 exec "syn sync minlines=" . s:sh_minlines . " maxlines=" . s:sh_maxlines
 syn sync match bashinfinityTrySync grouphere bashinfinityTryReg /try {/
-syn sync match bashinfinityCatchSync grouphere bashinfinityCatchReg /}\s*catch\s*{/
+syn sync match bashinfinityCatchSync grouphere bashinfinityCatchReg /catch\s*{/
 syn sync match bashinfinityMethodSync grouphere bashinfinityMethodReg /[^(]*()\s*{/
 syn sync match bashinfinityClassSync grouphere bashinfinityClassReg /class:[^(]*() {/
 
