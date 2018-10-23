@@ -16,7 +16,7 @@ runtime syntax/sh.vim
 
 
 " cluster {{{1
-syn cluster bashinfinityClass contains=bashinfinityStorageClass,bashinfinityClassDefinition,bashinfinityClassReg
+syn cluster bashinfinityClass contains=bashinfinityAccess,bashinfinityClassDefinition,bashinfinityClassReg
 syn cluster bashinfinityMethod contains=bashinfinityMethodReg
 
 " keywords {{{1
@@ -27,7 +27,7 @@ syn keyword bashinfinityCatch catch nextgroup=bashinfinityCatchReg skipwhite
 syn keyword bashinfinityException throw
 syn keyword bashinfinityNamedParam "[string]" "[array]" "[integer]" "[map]" "[boolean]"
 syn keyword bashinfinityType string array integer map boolean
-syn keyword bashinfinityStorageClass private public nextgroup=bashinfinityType skipwhite
+syn keyword bashinfinityAccess private public nextgroup=bashinfinityType skipwhite
 
 " match {{{1
 syn match bashinfinityClassMethod '[^:]*::[^(]*'
@@ -75,11 +75,16 @@ hi def link bashinfinityCatch Exception
 hi def link bashinfinityException Exception
 hi def link bashinfinityNamedParam Type
 hi def link bashinfinityType Type
-hi def link bashinfinityStorageClass StorageClass
+hi def link bashinfinityAccess Statement
 hi def link bashinfinityClassMethod Function
 hi def link bashinfinityClassDefinition Function
 hi def link bashinfinityObjectmethod Function
 "hi def link bashinfinityNamespace
+
+syn region bashinfinityTest matchgroup=MCgroup start=/ab:cdef {/ms=e+1 matchgroup=MCgroupE end=/}/me=s-1 contains=bashinfinityClassMethod transparent
+syn match MCgroup /ab:cdef {/ nextgroup=bashinfinityTest
+syn match MCgroupE /}/
+hi def link bashinfinityTest Todo
 
 
 " Set Current Syntax: {{{1
