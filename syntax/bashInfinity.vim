@@ -40,8 +40,8 @@ syn region bashinfinityTryReg matchgroup=bashinfinityTryRegOpen start=/try *{/ms
                                 \ contains=ALL nextgroup=bashinfinityTryRegClose transparent
 syn region bashinfinityCatchReg matchgroup=bashinfinityCatchRegOpen start=/\s*catch\s*{/ms=e+1 matchgroup=bashinfinityCatchRegClose end=/}/me=s-1
                                 \ contains=ALL nextgroup=bashinfinityCatchRegClose transparent
-syn region bashinfinityMethodReg start=/[^(]*()\s*{/ms=e+1 end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
-syn region bashinfinityClassReg start=/class:[^(]*()\s*{/ms=e+1 end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass
+syn region bashinfinityMethodReg matchgroup=bashinfinityMethodRegOpen start=/[^(]*()\s*{/ms=e+1 matchgroup=Delimiter end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
+syn region bashinfinityClassReg matchgroup=bashinfinityClassRegOpen start=/class:[^(]*()\s*{/ms=e+1  matchgroup=Delimiter end=/}/me=s-1 contains=ALL
 
 " region delimiters {{{2
 syn match bashinfinityTryRegOpen /try\s*{/ nextgroup=bashinfinityTryReg contains=bashinfinityTry
