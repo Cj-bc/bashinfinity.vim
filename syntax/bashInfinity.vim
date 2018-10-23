@@ -32,7 +32,7 @@ syn keyword bashinfinityAccess private public nextgroup=bashinfinityType skipwhi
 " match {{{1
 syn match bashinfinityClassMethod '[^:]*::[^(]*'
 syn match bashinfinityClassDefinition 'class:[^(]*()'
-syn match bashinfinityObjectmethod '.*\.[^(]*'
+syn match bashinfinityInstanceMethod '.*\.[^(]*'
 syn match bashinfinityNamespace 'namespace *'
 
 " region {{{1
@@ -42,12 +42,14 @@ syn region bashinfinityCatchReg matchgroup=bashinfinityCatchRegOpen start=/\s*ca
                                 \ contains=ALL nextgroup=bashinfinityCatchRegClose transparent
 syn region bashinfinityMethodReg matchgroup=bashinfinityMethodRegOpen start=/[^(]*()\s*{/ms=e+1 matchgroup=Delimiter end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
 syn region bashinfinityClassReg matchgroup=bashinfinityClassRegOpen start=/class:[^(]*()\s*{/ms=e+1  matchgroup=Delimiter end=/}/me=s-1 contains=ALL
+syn region bashinfinityInstanceMethodReg matchgroup=bashinfinityInstanceMethodRegOpen start=/[^.]*\.[^(]*()\s*{/ms=e+1 matchgroup=bashinfinityDelimiterClose end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
 
 " region delimiters {{{2
 syn match bashinfinityTryRegOpen /try\s*{/ nextgroup=bashinfinityTryReg contains=bashinfinityTry,Delimiter
 syn match bashinfinityCatchRegOpen /catch\s*{/ nextgroup=bashinfinityCatchReg contains=bashinfinityCatch,Delimiter
 syn match bashinfinityMethodRegOpen /[^(]*() *{/ nextgroup=bashinfinityMethodReg contains=bashinfinityMethod,Delimiter
 syn match bashinfinityClassRegOpen /class:[^(]*()\s*{/ nextgroup=bashinfinityClassReg contains=bashinfinityClassDefinition,Delimiter
+syn match bashinfinityInstanceMethodRegOpen /[^.]*\.[^(]*()\s*{/ nextgroup=bashinfinityInstanceMethodReg contains=bashinfinityInstanceMethod,bashinfinityDelimiterOpen
 
 
 " Synchronization: {{{1
@@ -69,6 +71,7 @@ syn sync match bashinfinityTrySync grouphere bashinfinityTryReg /try {/
 syn sync match bashinfinityCatchSync grouphere bashinfinityCatchReg /catch\s*{/
 syn sync match bashinfinityMethodSync grouphere bashinfinityMethodReg /[^(]*()\s*{/
 syn sync match bashinfinityClassSync grouphere bashinfinityClassReg /class:[^(]*() {/
+syn sync match bashinfinityInstanceMethodSync grouphere bashinfinityInstanceMethodReg /[^.]*\.[^(]*()\s*{/
 
 "syn region bashinfinity 'namespace *'
 
@@ -84,7 +87,7 @@ hi def link bashinfinityType Type
 hi def link bashinfinityAccess Statement
 hi def link bashinfinityClassMethod Function
 hi def link bashinfinityClassDefinition Function
-hi def link bashinfinityObjectmethod Function
+hi def link bashinfinityInstanceMethod Function
 "hi def link bashinfinityNamespace
 
 syn region bashinfinityTest matchgroup=MCgroup start=/ab:cdef {/ms=e+1 matchgroup=MCgroupE end=/}/me=s-1 contains=bashinfinityClassMethod transparent
