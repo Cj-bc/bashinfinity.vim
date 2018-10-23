@@ -45,7 +45,7 @@ syn region bashinfinityClassReg matchgroup=bashinfinityClassRegOpen start=/class
 
 " region delimiters {{{2
 syn match bashinfinityTryRegOpen /try\s*{/ nextgroup=bashinfinityTryReg contains=bashinfinityTry,Delimiter
-syn match bashinfinityCatchRegOpen /\s*catch\s*{/ nextgroup=bashinfinityCatchReg contains=bashinfinityCatch,Delimiter
+syn match bashinfinityCatchRegOpen /catch\s*{/ nextgroup=bashinfinityCatchReg contains=bashinfinityCatch,Delimiter
 syn match bashinfinityMethodRegOpen /[^(]*() *{/ nextgroup=bashinfinityMethodReg contains=bashinfinityMethod,Delimiter
 syn match bashinfinityClassRegOpen /class:[^(]*()\s*{/ nextgroup=bashinfinityClassReg contains=bashinfinityClassDefinition,Delimiter
 
