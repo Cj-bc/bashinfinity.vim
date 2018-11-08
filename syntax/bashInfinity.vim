@@ -16,8 +16,8 @@ runtime syntax/sh.vim
 
 
 " cluster {{{1
-syn cluster bashinfinityClass contains=bashinfinityAccess,bashinfinityClassDefinition,bashinfinityClassReg
-syn cluster bashinfinityMethod contains=bashinfinityMethodReg
+syn cluster bashinfinityClass contains=bashinfinityAccess,bashinfinityClassDefinition,bashinfinityClassReg,bashinfinityClassMethod,bashinfinityClassMethodReg,bashinfinityClassMethodRegOpen,bashinfinityClassMethodRegOpen
+syn cluster bashinfinityMethod contains=bashinfinityClassMethodReg,bashinfinityInstanceMethodReg
 
 " keywords {{{1
 syn keyword bashinfinityImport import
