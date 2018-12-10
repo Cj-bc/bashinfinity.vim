@@ -87,5 +87,5 @@ function! Bashinfinity_omni_func(findstart, base)
 endfunction
 
 " finally {{{1
-set cpo = s:save_cpo
+let &cpo = s:save_cpo
 " }}}
