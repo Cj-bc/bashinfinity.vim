@@ -18,7 +18,7 @@ endfunction
 function! s:setFileType()
   set filetype=sh
   if s:isInfinity()
-    set syntax=bashinfinity
+    set filetype=bashinfinity
   endif
 endfunction
 
