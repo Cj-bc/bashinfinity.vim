@@ -59,8 +59,10 @@ let s:standard_libraries = [ 'Array/Contains',
 
 " }}}
 
+" omni func {{{1
 " reffer to `:h E839`
 function! bashinfinity#Bashinfinity_omni_func(findstart, base)
+
   let line = getline('.')
   if a:findstart
     let start = col('.') - 1
@@ -85,6 +87,7 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
 
   endif
 endfunction
+" }}}
 
 " finally {{{1
 let &cpo = s:save_cpo
