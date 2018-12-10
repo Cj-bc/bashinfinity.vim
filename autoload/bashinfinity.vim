@@ -19,6 +19,7 @@ let g:loaded_bashinfinity = 1
 " }}}
 
 " ========== VARIABLES CONFIGURATION ========== {{{1
+let s:bashinfinityVim_path = expand('<sfile>:p:h')
 " path to dictionary file
 let s:DICTIONARY_PATH = s:bashinfinityVim_path . '/dictionary/bashinfinity.vim'
 " keywords defined in Dictionary
