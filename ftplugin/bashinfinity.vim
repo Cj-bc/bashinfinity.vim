@@ -4,15 +4,13 @@
 " Last Change:  Dec 07 2018
 " Version:      0.0.1
 " URL:          https://github.com/Cj-bc/bashInfinity.vim
+"
+" This plugin do:
+"   * set dictionary for bash-oo-framework
+"   * set omni function
 
-let s:save_cpo = &cpo
-set cpo&vim
-
-if exists("g:loaded_bashinfinity")
-  finish
-endif
-let g:loaded_bashinfinity = 1
-
+exec "setlocal dictionary=" . expand('<sfile>:p:h') . "/../dictionary/bashinfinity.vim"
+setlocal omnifunc=bashinfinity#Bashinfinity_omni_func
 
 "  at the last
 let &cpo = s:save_cpo
