@@ -11,4 +11,3 @@
 
 exec "setlocal dictionary=" . expand('<sfile>:p:h') . "/../dictionary/bashinfinity.vim"
 setlocal omnifunc=bashinfinity#Bashinfinity_omni_func
-
