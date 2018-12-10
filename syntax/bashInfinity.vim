@@ -71,9 +71,9 @@ endif
 exec "syn sync minlines=" . s:sh_minlines . " maxlines=" . s:sh_maxlines
 syn sync match bashinfinityTrySync grouphere bashinfinityTryReg /try {/
 syn sync match bashinfinityCatchSync grouphere bashinfinityCatchReg /catch\s*{/
-syn sync match bashinfinityMethodSync grouphere bashinfinityMethodReg /[^(]*()\s*{/
 syn sync match bashinfinityClassSync grouphere bashinfinityClassReg /class:[^(]*()\s*{/
 syn sync match bashinfinityInstanceMethodSync grouphere bashinfinityInstanceMethodReg /[^.]*\.[^(]*()\s*{/
+syn sync match bashinfinityClassMethodSync grouphere bashinfinityClassMethodReg /[^:]*::[^(]*()\s*{/
 
 "syn region bashinfinity 'namespace *'
 
