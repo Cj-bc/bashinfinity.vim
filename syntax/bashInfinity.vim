@@ -94,10 +94,10 @@ hi def link bashinfinityDelimiterClose Function
 hi def link bashinfinityDelimiterOpen Function
 "hi def link bashinfinityNamespace
 
-syn region bashinfinityTest matchgroup=MCgroup start=/ab:cdef {/ms=e+1 matchgroup=MCgroupE end=/}/me=s-1 contains=bashinfinityClassMethod transparent
-syn match MCgroup /ab:cdef {/ nextgroup=bashinfinityTest
-syn match MCgroupE /}/
-hi def link bashinfinityTest Todo
+""syn region bashinfinityTest matchgroup=MCgroup start=/ab:cdef {/ms=e+1 matchgroup=MCgroupE end=/}/me=s-1 contains=bashinfinityClassMethod transparent
+""syn match MCgroup /ab:cdef {/ nextgroup=bashinfinityTest
+""syn match MCgroupE /}/
+""hi def link bashinfinityTest Todo
 
 
 " Set Current Syntax: {{{1
