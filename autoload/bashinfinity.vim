@@ -60,7 +60,7 @@ let s:standard_libraries = [ 'Array/Contains',
 " }}}
 
 " reffer to `:h E839`
-function! Bashinfinity_omni_func(findstart, base)
+function! bashinfinity#Bashinfinity_omni_func(findstart, base)
   let line = getline('.')
   if a:findstart
     let start = col('.') - 1
