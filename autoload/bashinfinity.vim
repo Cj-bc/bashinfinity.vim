@@ -70,7 +70,7 @@ function! Bashinfinity_omni_func(findstart, base)
   else
     " complete standard library names
     " TODO: offer blib libraries
-    if line =~ '^import '*
+    if line =~ '^import *'
       for lib in s:standard_libraries
         if lib =~ '^' . a:base
           call complete_add(lib)
