@@ -1,3 +1,13 @@
+" Vim autoload file
+" Language:     Bash with bash-oo-framework
+" Maintainer:   Cj-bc <cj.bc-sd@outlook.jp>
+" Last Change:  Dec 10 2018
+" Version:      0.0.1
+" URL:          https://github.com/Cj-bc/bashInfinity.vim
+"
+" This plugin do:
+"   * define function for omnifunc
+
 " ========== init =========={{{1
 let s:save_cpo = &cpo
 set cpo&vim
