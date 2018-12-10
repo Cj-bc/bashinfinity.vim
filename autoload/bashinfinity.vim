@@ -76,7 +76,6 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
         if lib =~ '^' . a:base
           call complete_add(lib)
         endif
-        sleep 3000m
         if complete_check()
           break
         endif
