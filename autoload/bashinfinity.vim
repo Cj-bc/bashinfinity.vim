@@ -59,6 +59,20 @@ let s:standard_libraries = [ 'Array/Contains',
 
 " }}}
 
+" ========== utility functions =========== {{{1
+
+" get defined class names in the file
+" @param <string:file> file path
+" @return <list:class_names> detected class names
+function bashinfinity#get_class_names(file)
+  let s:classes = []
+  for line in readfile(a:file)
+    if line =~ '^class:*'
+      call add(s:classes, matchstr(line, 'class:\zs.*\ze() *{*'))
+    endif
+  endfor
+  return s:classes
+endfunction
 " omni func {{{1
 " reffer to `:h E839`
 function! bashinfinity#Bashinfinity_omni_func(findstart, base)
