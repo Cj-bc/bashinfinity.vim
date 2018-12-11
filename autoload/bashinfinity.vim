@@ -81,7 +81,7 @@ function bashinfinity#get_variable_names(file)
   let s:variables = []
   for line in readfile(a:file)
     for name in s:primitive_types + bashinfinity#get_class_names(a:file)
-      if line =~ '\s*' . name . ' '
+      if line =~ '^ *' . name . ' '
         call add(s:variables, matchstr(line, name . ' \zs.*\ze'))
       endif
     endfor
