@@ -85,9 +85,9 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
     endwhile
     return start
   else
-    " complete standard library names
-    " TODO: offer blib libraries
     if line =~ '^import *'
+      " complete standard library names
+      " TODO: offer blib libraries
       for lib in s:standard_libraries
         if lib =~ '^' . a:base
           call complete_add(lib)
