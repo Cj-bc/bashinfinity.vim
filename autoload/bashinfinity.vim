@@ -97,6 +97,17 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
         endif
       endfor
       return []
+    else
+      " complete common keywords & class names
+      let s:class_names = bashinfinity#get_class_names(expand('%'))
+      for word in s:keywords + s:class_names
+        if word =~ '^' . a:base
+          call complete_add(word)
+        endif
+        if complete_check()
+          break
+        endif
+      endfor
     endif
 
   endif
