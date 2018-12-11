@@ -73,10 +73,26 @@ function bashinfinity#get_class_names(file)
   endfor
   return s:classes
 endfunction
+
+" get defined variable names in the file
+" @param <string:file> file path
+" @return <list:variable_names> detected variable names
+function bashinfinity#get_variable_names(file)
+  let s:variables = []
+  for line in readfile(a:file)
+    for name in s:primitive_types + bashinfinity#get_class_names(a:file)
+      if line =~ '\s*' . name . ' '
+        call add(s:variables, matchstr(line, name . ' \zs.*\ze'))
+      endif
+    endfor
+  endfor
+  return s:variables
+endfunction
+
+
 " omni func {{{1
 " reffer to `:h E839`
 function! bashinfinity#Bashinfinity_omni_func(findstart, base)
-
   let line = getline('.')
   if a:findstart
     let start = col('.') - 1
