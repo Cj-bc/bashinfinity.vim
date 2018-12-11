@@ -95,6 +95,7 @@ function bashinfinity#get_variable_names(file)
   return s:variables
 endfunction
 
+" }}}
 
 " omni func {{{1
 " reffer to `:h E839`
