@@ -122,7 +122,8 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
     else
       " complete common keywords & class names
       let s:class_names = bashinfinity#get_class_names(expand('%'))
-      for word in s:keywords + s:class_names
+      let s:variable_names = bashinfinity#get_variable_names(expand('%'))
+      for word in s:keywords + s:class_names + s:variable_names
         if word =~ '^' . a:base
           call complete_add(word)
         endif
