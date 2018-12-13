@@ -95,6 +95,21 @@ function bashinfinity#get_variable_names(file)
   return s:ret_variables
 endfunction
 
+" get all class methods for the class
+" @param <string:path> file path
+" @param <string:class_name> class name
+" @return <list:methods_names> detected class method names
+function bashinfinity#get_class_method_names(file, class_name)
+  let s:ret_method_names = []
+  for line in readfile(a:file)
+    if line =~ ' *' . a:class_name . '::.*'
+      call add(s:ret_method_names, matchstr(line, a:class_name . '::.*'))
+    endif
+  endfor
+  return s:ret_method_names
+endfunction
+
+
 " }}}
 
 " omni func {{{1
