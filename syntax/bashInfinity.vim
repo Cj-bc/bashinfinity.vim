@@ -31,7 +31,7 @@ syn keyword bashinfinityAccess private public nextgroup=bashinfinityType skipwhi
 
 " match {{{1
 syn match bashinfinityClassMethod '[^:]*::[^(]*'
-syn match bashinfinityClassDefinition 'class:[^(]*()'
+syn match bashinfinityClassDefinition '\zsclass:\ze[^(]*()'
 syn match bashinfinityInstanceMethod '.*\.[^(]*'
 syn match bashinfinityNamespace 'namespace *'
 
@@ -71,7 +71,7 @@ endif
 exec "syn sync minlines=" . s:sh_minlines . " maxlines=" . s:sh_maxlines
 syn sync match bashinfinityTrySync grouphere bashinfinityTryReg /try {/
 syn sync match bashinfinityCatchSync grouphere bashinfinityCatchReg /catch\s*{/
-syn sync match bashinfinityClassSync grouphere bashinfinityClassReg /class:[^(]*()\s*{/
+syn sync match bashinfinityClassSync grouphere bashinfinityClassReg /\zsclass:\ze[^(]*()\s*{/
 syn sync match bashinfinityInstanceMethodSync grouphere bashinfinityInstanceMethodReg /[^.]*\.[^(]*()\s*{/
 syn sync match bashinfinityClassMethodSync grouphere bashinfinityClassMethodReg /[^:]*::[^(]*()\s*{/
 
@@ -88,7 +88,7 @@ hi def link bashinfinityNamedParam Type
 hi def link bashinfinityType Type
 hi def link bashinfinityAccess Statement
 hi def link bashinfinityClassMethod Function
-hi def link bashinfinityClassDefinition Function
+hi def link bashinfinityClassDefinition Statement
 hi def link bashinfinityInstanceMethod Function
 hi def link bashinfinityDelimiterClose Function
 hi def link bashinfinityDelimiterOpen Function
