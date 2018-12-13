@@ -36,9 +36,9 @@ syn match bashinfinityInstanceMethod '.*\.[^(]*'
 syn match bashinfinityNamespace 'namespace *'
 
 " region {{{1
-syn region bashinfinityTryReg matchgroup=bashinfinityTryRegOpen start=/try\s*{/ms=e+1 matchgroup=bashinfinityDelimiterClose end=/}/me=s-1
+syn region bashinfinityTryReg matchgroup=bashinfinityTryRegOpen start=/try\s*{/ms=e+1 matchgroup=bashinfinityDelimiterOpen end=/}/me=s-1
                                 \ contains=ALL nextgroup=bashinfinityTryRegClose transparent
-syn region bashinfinityCatchReg matchgroup=bashinfinityCatchRegOpen start=/\s*catch\s*{/ms=e+1 matchgroup=bashinfinityDelimiterClose end=/}/me=s-1
+syn region bashinfinityCatchReg matchgroup=bashinfinityCatchRegOpen start=/\s*catch\s*{/ms=e+1 matchgroup=bashinfinityDelimiterOpen end=/}/me=s-1
                                 \ contains=ALL nextgroup=bashinfinityCatchRegClose transparent
 syn region bashinfinityInstanceMethodReg matchgroup=bashinfinityInstanceMethodRegOpen start=/[^.]*\.[^(]*()\s*{/ms=e+1 matchgroup=bashinfinityDelimiterClose end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
 syn region bashinfinityClassMethodReg matchgroup=bashinfinityClassMethodRegOpen start=/[^:]*::[^(]*()\s*{/ms=e+1 matchgroup=bashinfinityDelimiterClose end=/}/me=s-1 contains=ALLBUT,@bashinfinityClass,@bashinfinityMethod
