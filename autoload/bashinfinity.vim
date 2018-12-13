@@ -67,6 +67,7 @@ let s:standard_libraries = [ 'Array/Contains',
 
 " ========== utility functions =========== {{{1
 
+" bashinfinity#get_class_names {{{2
 " get defined class names in the file
 " @param <string:file> file path
 " @return <list:class_names> detected class names
@@ -79,7 +80,9 @@ function bashinfinity#get_class_names(file)
   endfor
   return s:classes
 endfunction
+" }}}
 
+" bashinfinity#get_variable_names {{{2
 " get defined variable names in the file
 " @param <string:file> file path
 " @return <list:variable_names> detected variable names
@@ -94,7 +97,9 @@ function bashinfinity#get_variable_names(file)
   endfor
   return s:ret_variables
 endfunction
+" }}}
 
+" bashinfinity#get_class_method_names {{{2
 " get all class methods for the class
 " @param <string:path> file path
 " @param <list:class_names> class name
@@ -110,7 +115,7 @@ function bashinfinity#get_class_method_names(file, class_names)
   endfor
   return s:ret_method_names
 endfunction
-
+"" }}}
 
 " }}}
 
