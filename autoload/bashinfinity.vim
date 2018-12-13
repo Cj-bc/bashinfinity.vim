@@ -84,15 +84,15 @@ endfunction
 " @param <string:file> file path
 " @return <list:variable_names> detected variable names
 function bashinfinity#get_variable_names(file)
-  let s:variables = []
+  let s:ret_variables = []
   for line in readfile(a:file)
     for name in s:primitive_types + bashinfinity#get_class_names(a:file)
       if line =~ '^ *' . name . ' '
-        call add(s:variables, matchstr(line, name . ' \zs.*\ze'))
+        call add(s:ret_variables, matchstr(line, name . ' \zs.*\ze'))
       endif
     endfor
   endfor
-  return s:variables
+  return s:ret_variables
 endfunction
 
 " }}}
