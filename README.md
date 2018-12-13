@@ -26,9 +26,9 @@ contains:
   - [x] Suggest library names after 'import'
   - [ ] Blib library completion
   - [ ] Class completion
-    - [ ] Class name
+    - [x] Class name
     - [ ] Class properties
-    - [ ] Class method
+    - [x] Class method
     - [ ] Instance method
   - [ ] Do for imported files
 
