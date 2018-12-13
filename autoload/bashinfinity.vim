@@ -142,7 +142,7 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
       "       list so that we don't have to re-search for each time.
       let s:class_names = bashinfinity#get_class_names(expand('%'))
       let s:variable_names = bashinfinity#get_variable_names(expand('%'))
-      let s:class_methods  = bashinfinity#get_class_method_names(expand('%'), s:class_names))
+      let s:class_methods = bashinfinity#get_class_method_names(expand('%'), s:class_names)
       for word in s:keywords + s:class_names + s:variable_names + s:class_methods
         if word =~ '^' . a:base
           call complete_add(word)
