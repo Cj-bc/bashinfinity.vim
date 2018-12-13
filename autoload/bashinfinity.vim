@@ -97,14 +97,16 @@ endfunction
 
 " get all class methods for the class
 " @param <string:path> file path
-" @param <string:class_name> class name
+" @param <list:class_names> class name
 " @return <list:methods_names> detected class method names
-function bashinfinity#get_class_method_names(file, class_name)
+function bashinfinity#get_class_method_names(file, class_names)
   let s:ret_method_names = []
   for line in readfile(a:file)
-    if line =~ ' *' . a:class_name . '::.*'
-      call add(s:ret_method_names, matchstr(line, a:class_name . '::.*'))
-    endif
+    for name in a:class_names
+      if line =~ ' *' . name . '::.*'
+        call add(s:ret_method_names, matchstr(line, name . '::.*'))
+      endif
+    endfor
   endfor
   return s:ret_method_names
 endfunction
@@ -134,12 +136,14 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
           break
         endif
       endfor
-      return []
     else
-      " complete common keywords & class names
+      " complete common keywords & class/variable names
+      " TODO:  support names in imported files. I think it's better to save the
+      "       list so that we don't have to re-search for each time.
       let s:class_names = bashinfinity#get_class_names(expand('%'))
       let s:variable_names = bashinfinity#get_variable_names(expand('%'))
-      for word in s:keywords + s:class_names + s:variable_names
+      let s:class_methods  = bashinfinity#get_class_method_names(expand('%'), s:class_names))
+      for word in s:keywords + s:class_names + s:variable_names + s:class_methods
         if word =~ '^' . a:base
           call complete_add(word)
         endif
@@ -148,7 +152,7 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
         endif
       endfor
     endif
-
+    return []
   endif
 endfunction
 " }}}
