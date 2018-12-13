@@ -21,12 +21,12 @@ syn cluster bashinfinityMethod contains=bashinfinityClassMethodReg,bashinfinityI
 
 " keywords {{{1
 syn keyword bashinfinityImport import
-syn keyword bashinfinityLog namespace Log
+syn keyword bashinfinityLog Log
 syn keyword bashinfinityTry try nextgroup=bashinfinityTryReg skipwhite
 syn keyword bashinfinityCatch catch nextgroup=bashinfinityCatchReg skipwhite
 syn keyword bashinfinityException throw
 syn keyword bashinfinityNamedParam "[string]" "[array]" "[integer]" "[map]" "[boolean]"
-syn keyword bashinfinityType string array integer map boolean
+syn keyword bashinfinityType string array integer map boolean namespace
 syn keyword bashinfinityAccess private public nextgroup=bashinfinityType skipwhite
 
 " match {{{1
