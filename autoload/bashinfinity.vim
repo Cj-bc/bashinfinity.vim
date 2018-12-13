@@ -109,7 +109,7 @@ function bashinfinity#get_class_method_names(file, class_names)
   for line in readfile(a:file)
     for name in a:class_names
       if line =~ ' *' . name . '::.*'
-        call add(s:ret_method_names, matchstr(line, name . '::.*'))
+        call add(s:ret_method_names, matchstr(line, name . '::.*\ze()'))
       endif
     endfor
   endfor
