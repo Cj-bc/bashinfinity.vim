@@ -8,7 +8,7 @@
 
 function! s:isInfinity()
   for i in range(1, line('$'))
-    if !empty(matchstr(getline(i), 'source .*oo-bootstrap\.sh'))
+    if !empty(matchstr(getline(i), 'source .*oo-bootstrap\.sh')) || !empty(matchstr(expand('%'), '.oo.sh'))
       return 1
     endif
   endfor
