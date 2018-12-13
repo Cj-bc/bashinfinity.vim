@@ -41,3 +41,11 @@ Can be invoked by `<C-x><C-k>` in insert mode.
 # syntax highlight
 
 Offers suitable colors for bash-oo-framework statement
+
+  - Import: `import`
+  - Log: `Log`
+  - Exceptions: `try`/`catch`/`throw`
+  - types: `namespace`/`integer`/boolean`/`string`/`array`/`map`
+  - variable definitions: `[string]`/`[array]`/`[integer]`/`[map]`/`[boolean]`
+  - access methods: `private`/`public`
+  - classes: `class:`/class method/instance method
