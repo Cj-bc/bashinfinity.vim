@@ -45,12 +45,12 @@ syn region bashinfinityClassMethodReg matchgroup=bashinfinityClassMethodRegOpen 
 syn region bashinfinityClassReg matchgroup=bashinfinityClassRegOpen start=/class:[^(]*()\s*{/ms=e+1  matchgroup=bashinfinityDelimiterClose end=/}/me=s-1 contains=ALL
 
 " region delimiters {{{2
-syn match bashinfinityTryRegOpen /try\s*{/ nextgroup=bashinfinityTryReg contains=bashinfinityTry,bashinfinityDelimiterOpen
-syn match bashinfinityCatchRegOpen /catch\s*{/ nextgroup=bashinfinityCatchReg contains=bashinfinityCatch,bashinfinityDelimiterOpen
-syn match bashinfinityInstanceMethodRegOpen /[^.]*\.[^(]*()\s*{/ nextgroup=bashinfinityInstanceMethodReg contains=bashinfinityInstanceMethod,bashinfinityDelimiterOpen
-syn match bashinfinityClassMethodRegOpen /[^:]*::[^(]*()\s*{/ nextgroup=bashinfinityClassMethodReg contains=bashinfinityClassMethod,bashinfinityDelimiterOpen
-syn match bashinfinityClassRegOpen /class:[^(]*()\s*{/ nextgroup=bashinfinityClassReg contains=bashinfinityClassDefinition,bashinfinityDelimiterOpen
-syn match bashinfinityDelimiterClose /}/
+syn match bashinfinityTryRegOpen /try\s*\zs{\ze/ nextgroup=bashinfinityTryReg
+syn match bashinfinityCatchRegOpen /catch\s*\zs{\ze/ nextgroup=bashinfinityCatchReg
+syn match bashinfinityInstanceMethodRegOpen /[^.]*\.[^(]*()\s*\zs{\ze/ nextgroup=bashinfinityInstanceMethodReg
+syn match bashinfinityClassMethodRegOpen /[^:]*::[^(]*()\s*\zs{\ze/ nextgroup=bashinfinityClassMethodReg
+syn match bashinfinityClassRegOpen /class:[^(]*()\s*\zs{\ze/ nextgroup=bashinfinityClassReg
+syn match bashinfinityDelimiterClose /}/ " TODO: remove this and below
 syn match bashinfinityDelimiterOpen /{/
 
 
