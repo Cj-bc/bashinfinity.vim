@@ -47,5 +47,5 @@ Offers suitable colors for bash-oo-framework statement
   - Exceptions: `try`/`catch`/`throw`
   - types: `namespace`/`integer`/boolean`/`string`/`array`/`map`
   - variable definitions: `[string]`/`[array]`/`[integer]`/`[map]`/`[boolean]`
-  - access methods: `private`/`public`
+  - scopes: `private`/`public`
   - classes: `class:`/class method/instance method

@@ -39,3 +39,11 @@ bashフレームワーク 'bash-oo-framework' 用のvimプラグインです
 # シンタックスハイライト
 
 bash-oo-frameworkの文法に基づいた、sh用シンタックスファイルの拡張です
+
+  - Import: `import`
+  - Log: `Log`
+  - 例外処理系: `try`/`catch`/`throw`
+  - 型: `namespace`/`integer`/boolean`/`string`/`array`/`map`
+  - variable definitions: `[string]`/`[array]`/`[integer]`/`[map]`/`[boolean]`
+  - スコープ: `private`/`public`
+  - クラス関連: `class:`/class method/instance method
