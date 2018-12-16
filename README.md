@@ -1,3 +1,7 @@
+日本語: [JA_README.md](JA_README.md)
+
+---
+
 # bashinfinity.vim
 
 **Vim Plugin for bash-oo-framework**
