@@ -33,7 +33,7 @@ contains:
     - [x] Class name
     - [ ] Class properties
     - [x] Class method
-    - [ ] Instance method
+    - [x] Instance method
   - [ ] Do for imported files
 
 
