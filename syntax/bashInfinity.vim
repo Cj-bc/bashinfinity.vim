@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:		Bash with bash-oo-framework
 " Maintainer:		Cj-bc <cj.bc-sd@outlook.jp>
-" Last Change:		Oct 22 2018
+" Last Change:		Dec 13 2018
 " Version:		0.0.1
 " URL:                          https://github.com/Cj-bc/bashInfinity.vim
 " For options and settings, please use:      :help ft-sh-syntax
