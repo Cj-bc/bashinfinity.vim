@@ -117,6 +117,23 @@ function bashinfinity#get_class_method_names(file, class_names)
 endfunction
 "" }}}
 
+" bashinfinity#get_instant_method_names {{{2
+" get all instance method names of given class
+" @param <string:file> file path
+" @param <list:class_names> class name
+function bashinfinity#get_instant_method_names(file, class_names)
+  let s:ret_method_names = []
+  for line in readfile(a:file)
+    for name in a:class_names
+      if line =~ ' *' . name . '\..*'
+        call add(s:ret_method_names, matchstr(line, name . '\..*\ze()'))
+      endif
+    endfor
+  endfor
+  return s:ret_method_names
+endfunction
+
+" }}}
 " }}}
 
 " omni func {{{1
@@ -148,7 +165,8 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
       let s:class_names = bashinfinity#get_class_names(expand('%'))
       let s:variable_names = bashinfinity#get_variable_names(expand('%'))
       let s:class_methods = bashinfinity#get_class_method_names(expand('%'), s:class_names)
-      for word in s:keywords + s:class_names + s:variable_names + s:class_methods
+      let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), s:class_names)
+      for word in s:keywords + s:class_names + s:variable_names + s:class_methods + s:instance_methods
         if word =~ '^' . a:base
           call complete_add(word)
         endif
