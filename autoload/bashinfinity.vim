@@ -65,6 +65,8 @@ let s:standard_libraries = [ 'Array/Contains',
 
 " regexes
 let s:regex_after_import = '^import *'
+let s:regex_variable_handler = '$\=var: \=.*'
+let s:regex_variable_hander_variableName = 'var: \=\zs.*\ze '
 " }}}
 
 " ========== utility functions =========== {{{1
@@ -155,6 +157,19 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
       for lib in s:standard_libraries
         if lib =~ '^' . a:base
           call complete_add(lib)
+        endif
+        if complete_check()
+          break
+        endif
+      endfor
+    elseif line =~ s:regex_variable_handler
+      " complete class properties & class/instance methods
+      let s:class_name = matchlist(line, s:regex_variable_hander_variableName)
+      let s:class_methods = bashinfinity#get_class_method_names(expand('%'), s:class_name)
+      let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), s:class_name)
+      for word in s:class_methods + s:instance_methods
+        if word =~ '^' . a:base
+          call complete_add(word)
         endif
         if complete_check()
           break

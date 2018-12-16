@@ -29,6 +29,10 @@ contains:
   - [x] Standard library completion
   - [x] Suggest library names after 'import'
   - [ ] Blib library completion
+  - [ ] completion after handlers `var: `/`$var:`
+    - [x] class method
+    - [x] instance method
+    - [x] properties
   - [ ] Class completion
     - [x] Class name
     - [ ] Class properties
