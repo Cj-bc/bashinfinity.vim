@@ -65,7 +65,7 @@ let s:standard_libraries = [ 'Array/Contains',
 
 " regexes
 let s:regex_after_import = '^import *'
-let s:regex_variable_handler = '$\=var: \=.*'
+let s:regex_variable_handler = '\$\=var: \=.* \_$'
 let s:regex_variable_hander_variableName = 'var: \=\zs.*\ze '
 " }}}
 
