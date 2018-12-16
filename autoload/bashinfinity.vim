@@ -63,6 +63,8 @@ let s:standard_libraries = [ 'Array/Contains',
                            \ 'util/variable'
                           \]
 
+" regexes
+let s:regex_after_import = '^import *'
 " }}}
 
 " ========== utility functions =========== {{{1
@@ -147,7 +149,7 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
     endwhile
     return start
   else
-    if line =~ '^import *'
+    if line =~ s:regex_after_import
       " complete standard library names
       " TODO: offer blib libraries
       for lib in s:standard_libraries
