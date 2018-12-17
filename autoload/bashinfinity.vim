@@ -67,9 +67,41 @@ let s:standard_libraries = [ 'Array/Contains',
 let s:regex_after_import = '^import *'
 let s:regex_variable_handler = '\$\=var: \=.+ \_$'
 let s:regex_variable_hander_variableName = 'var: \=\zs.+\ze '
+let s:regex_class_prefix = 'class:'
+let s:regex_open_delimiter = '{'
+let s:regex_close_delimiter = '}'
 " }}}
 
 " ========== utility functions =========== {{{1
+
+" bashinfinity#get_class_region {{{2
+" get whole code of given class
+" @param <string:file> file path
+" @param <list:class_name> class name
+function bashinfinity#get_class_region(file, class_name)
+  let s:ret_codes = []
+  let s:is_inside_class = v:false
+  let s:delimiter_nest = 0
+  for line in readfile(a:file)
+    if ! s:is_inside_class && line !~ s:regex_class_prefix . s:class_name
+      continue
+    endif
+    let s:is_inside_class = v:true
+    call add(s:ret_codes, line)
+    if line =~ s:regex_open_delimiter
+      let s:delimiter_nest += 1
+    elseif line =~ s:regex_close_delimiter
+      let s:delimiter_nest -= 1
+    endif
+
+    if s:delimiter_nest == 0
+      break
+    endif
+  endfor
+  return s:ret_codes
+endfunction
+
+" }}}
 
 " bashinfinity#get_class_names {{{2
 " get defined class names in the file
