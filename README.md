@@ -32,10 +32,9 @@ contains:
   - [ ] completion after handlers `var: `/`$var:`
     - [x] class method
     - [x] instance method
-    - [x] properties
+    - [ ] properties
   - [ ] Class completion
     - [x] Class name
-    - [ ] Class properties
     - [x] Class method
     - [x] Instance method
   - [ ] Do for imported files
