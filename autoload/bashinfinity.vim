@@ -196,6 +196,7 @@ endfunction
 " reffer to `:h E839`
 function! bashinfinity#Bashinfinity_omni_func(findstart, base)
   let s:line = getline('.')
+  let s:file = expand('%')
   if a:findstart
     let start = col('.') - 1
     while start > 0 && s:line[start - 1] =~ '\a'
@@ -219,8 +220,8 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
       let s:class_name = matchstr(s:line, s:regex_variable_hander_variableName)
 
       if s:class_name == ''
-        let s:class_names = bashinfinity#get_class_names(expand('%'))
-        let s:variable_names = bashinfinity#get_variable_names(expand('%'))
+        let s:class_names = bashinfinity#get_class_names(s:file)
+        let s:variable_names = bashinfinity#get_variable_names(s:file)
         for word in s:class_names
           if word =~ '^' . a:base
             call complete_add(word)
@@ -230,9 +231,9 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
           endif
         endfor
       else
-        let s:class_methods = bashinfinity#get_class_method_names(expand('%'), [s:class_name])
-        let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), [s:class_name])
-        let s:properties = bashinfinity#get_class_properties(expand('%'), s:class_name)
+        let s:class_methods = bashinfinity#get_class_method_names(s:file, [s:class_name])
+        let s:instance_methods = bashinfinity#get_instant_method_names(s:file, [s:class_name])
+        let s:properties = bashinfinity#get_class_properties(s:file, s:class_name)
 
         let s:class_methods = map(s:class_methods, { key, val -> matchstr(val,'::\zs.*') })
         let s:instance_methods = map(s:instance_methods, {key, val -> matchstr(v:val,'\.\zs.*') })
@@ -249,10 +250,10 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
       " complete common keywords & class/variable names
       " TODO:  support names in imported files. I think it's better to save the
       "       list so that we don't have to re-search for each time.
-      let s:class_names = bashinfinity#get_class_names(expand('%'))
-      let s:variable_names = bashinfinity#get_variable_names(expand('%'))
-      let s:class_methods = bashinfinity#get_class_method_names(expand('%'), s:class_names)
-      let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), s:class_names)
+      let s:class_names = bashinfinity#get_class_names(s:file)
+      let s:variable_names = bashinfinity#get_variable_names(s:file)
+      let s:class_methods = bashinfinity#get_class_method_names(s:file, s:class_names)
+      let s:instance_methods = bashinfinity#get_instant_method_names(s:file, s:class_names)
       for word in s:keywords + s:class_names + s:variable_names + s:class_methods + s:instance_methods
         if word =~ '^' . a:base
           call complete_add(word)
