@@ -220,6 +220,9 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
       let s:class_methods = bashinfinity#get_class_method_names(expand('%'), [s:class_name])
       let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), [s:class_name])
       let s:properties = bashinfinity#get_class_properties(expand('%'), s:class_name)
+
+      let s:class_methods = map(s:class_methods, { key, val -> matchstr(val,'::\zs.*') })
+      let s:instance_methods = map(s:instance_methods, {key, val -> matchstr(v:val,'\.\zs.*') })
       for word in s:class_methods + s:instance_methods + s:properties
         if word =~ '^' . a:base
           call complete_add(word)
