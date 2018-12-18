@@ -195,15 +195,15 @@ endfunction
 " omni func {{{1
 " reffer to `:h E839`
 function! bashinfinity#Bashinfinity_omni_func(findstart, base)
-  let line = getline('.')
+  let s:line = getline('.')
   if a:findstart
     let start = col('.') - 1
-    while start > 0 && line[start - 1] =~ '\a'
+    while start > 0 && s:line[start - 1] =~ '\a'
       let start -= 1
     endwhile
     return start
   else
-    if line =~ s:regex_after_import
+    if s:line =~ s:regex_after_import
       " complete standard library names
       " TODO: offer blib libraries
       for lib in s:standard_libraries
@@ -214,9 +214,9 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
           break
         endif
       endfor
-    elseif line =~ s:regex_after_variable_handler
+    elseif s:line =~ s:regex_after_variable_handler
       " complete class properties & class/instance methods
-      let s:class_name = matchstr(line, s:regex_variable_hander_variableName)
+      let s:class_name = matchstr(s:line, s:regex_variable_hander_variableName)
 
       if s:class_name == ''
         let s:class_names = bashinfinity#get_class_names(expand('%'))
