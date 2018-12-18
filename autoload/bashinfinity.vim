@@ -65,7 +65,7 @@ let s:standard_libraries = [ 'Array/Contains',
 
 " regexes
 let s:regex_after_import = '^import *'
-let s:regex_variable_handler = '\$\=var: \=.+ \_$'
+let s:regex_after_variable_handler = '\$\=var: \=.+ \_$'
 let s:regex_variable_hander_variableName = 'var: \=\zs.+\ze '
 let s:regex_class_prefix = 'class:'
 let s:regex_open_delimiter = '{'
@@ -214,7 +214,7 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
           break
         endif
       endfor
-    elseif line =~ s:regex_variable_handler
+    elseif line =~ s:regex_after_variable_handler
       " complete class properties & class/instance methods
       let s:class_name = matchlist(line, s:regex_variable_hander_variableName)
       let s:class_methods = bashinfinity#get_class_method_names(expand('%'), s:class_name)
