@@ -33,6 +33,7 @@ contains:
     - [x] class method
     - [x] instance method
     - [ ] properties
+    - [ ] primitive type's methods
   - [ ] Class completion
     - [x] Class name
     - [x] Class method
