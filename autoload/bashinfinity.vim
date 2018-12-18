@@ -70,6 +70,7 @@ let s:regex_variable_hander_variableName = 'var: \=\zs.+\ze '
 let s:regex_class_prefix = 'class:'
 let s:regex_open_delimiter = '{'
 let s:regex_close_delimiter = '}'
+let s:regex_no_comment_out = '[^#] *'
 " }}}
 
 " ========== utility functions =========== {{{1
@@ -168,8 +169,27 @@ function bashinfinity#get_instant_method_names(file, class_names)
   endfor
   return s:ret_method_names
 endfunction
+" }}}
+
+" bashinfinity#get_class_properties {{{2
+" get properties of given class
+" @param <string:file> file path
+" @param <list:class_name> class name
+" @return <list:properties> properties of <class_name>
+function bashinfinity#get_class_properties(file, class_name)
+  let s:ret_properites = []
+  for line in bashinfinity#get_class_region(a:file, a:class_name)
+    for type in s:primitive_types + bashinfinity#get_class_names(a:file)
+      if line =~ s:regex_no_comment_out . type . ' .*'
+        call add(s:ret_properites, matchstr(line, type . ' \zs.*\ze *')) " TODO: regex `.*` should be improved
+      endif
+    endfor
+  endfor
+  return s:ret_properites
+endfunction
 
 " }}}
+
 " }}}
 
 " omni func {{{1
@@ -199,7 +219,8 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
       let s:class_name = matchlist(line, s:regex_variable_hander_variableName)
       let s:class_methods = bashinfinity#get_class_method_names(expand('%'), s:class_name)
       let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), s:class_name)
-      for word in s:class_methods + s:instance_methods
+      let s:properties = bashinfinity#get_class_properties(expand('%'), s:class_name)
+      for word in s:class_methods + s:instance_methods + s:properties
         if word =~ '^' . a:base
           call complete_add(word)
         endif
