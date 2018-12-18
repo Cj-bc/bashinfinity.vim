@@ -217,20 +217,33 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
     elseif line =~ s:regex_after_variable_handler
       " complete class properties & class/instance methods
       let s:class_name = matchstr(line, s:regex_variable_hander_variableName)
-      let s:class_methods = bashinfinity#get_class_method_names(expand('%'), [s:class_name])
-      let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), [s:class_name])
-      let s:properties = bashinfinity#get_class_properties(expand('%'), s:class_name)
 
-      let s:class_methods = map(s:class_methods, { key, val -> matchstr(val,'::\zs.*') })
-      let s:instance_methods = map(s:instance_methods, {key, val -> matchstr(v:val,'\.\zs.*') })
-      for word in s:class_methods + s:instance_methods + s:properties
-        if word =~ '^' . a:base
-          call complete_add(word)
-        endif
-        if complete_check()
-          break
-        endif
-      endfor
+      if s:class_name != ''
+        let s:class_methods = bashinfinity#get_class_method_names(expand('%'), [s:class_name])
+        let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), [s:class_name])
+        let s:properties = bashinfinity#get_class_properties(expand('%'), s:class_name)
+
+        let s:class_methods = map(s:class_methods, { key, val -> matchstr(val,'::\zs.*') })
+        let s:instance_methods = map(s:instance_methods, {key, val -> matchstr(v:val,'\.\zs.*') })
+        for word in s:class_methods + s:instance_methods + s:properties
+          if word =~ '^' . a:base
+            call complete_add(word)
+          endif
+          if complete_check()
+            break
+          endif
+        endfor
+      else
+        let s:class_names = bashinfinity#get_class_names(expand('%'))
+        for word in s:class_names
+          if word =~ '^' . a:base
+            call complete_add(word)
+          endif
+          if complete_check()
+            break
+          endif
+        endfor
+      endif
     else
       " complete common keywords & class/variable names
       " TODO:  support names in imported files. I think it's better to save the
