@@ -78,7 +78,7 @@ let s:regex_no_comment_out = '[^#] *'
 " bashinfinity#get_class_region {{{2
 " get whole code of given class
 " @param <string:file> file path
-" @param <list:class_name> class name
+" @param <string:class_name> class name
 function bashinfinity#get_class_region(file, class_name)
   let s:ret_codes = []
   let s:is_inside_class = v:false
@@ -174,7 +174,7 @@ endfunction
 " bashinfinity#get_class_properties {{{2
 " get properties of given class
 " @param <string:file> file path
-" @param <list:class_name> class name
+" @param <string:class_name> class name
 " @return <list:properties> properties of <class_name>
 function bashinfinity#get_class_properties(file, class_name)
   let s:ret_properites = []
@@ -216,9 +216,9 @@ function! bashinfinity#Bashinfinity_omni_func(findstart, base)
       endfor
     elseif line =~ s:regex_after_variable_handler
       " complete class properties & class/instance methods
-      let s:class_name = matchlist(line, s:regex_variable_hander_variableName)
-      let s:class_methods = bashinfinity#get_class_method_names(expand('%'), s:class_name)
-      let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), s:class_name)
+      let s:class_name = matchstr(line, s:regex_variable_hander_variableName)
+      let s:class_methods = bashinfinity#get_class_method_names(expand('%'), [s:class_name])
+      let s:instance_methods = bashinfinity#get_instant_method_names(expand('%'), [s:class_name])
       let s:properties = bashinfinity#get_class_properties(expand('%'), s:class_name)
       for word in s:class_methods + s:instance_methods + s:properties
         if word =~ '^' . a:base
