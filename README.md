@@ -30,9 +30,10 @@ contains:
   - [x] Suggest library names after 'import'
   - [ ] Blib library completion
   - [ ] completion after handlers `var: `/`$var:`
+    - [x] variable name to use handler
     - [x] class method
     - [x] instance method
-    - [ ] properties
+    - [x] properties
     - [ ] primitive type's methods
   - [ ] Class completion
     - [x] Class name
