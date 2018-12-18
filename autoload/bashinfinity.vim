@@ -65,8 +65,8 @@ let s:standard_libraries = [ 'Array/Contains',
 
 " regexes
 let s:regex_after_import = '^import *'
-let s:regex_after_variable_handler = '\$\=var: \=.+ \_$'
-let s:regex_variable_hander_variableName = 'var: \=\zs.+\ze '
+let s:regex_after_variable_handler = '\$\=var: \=.* \_$'
+let s:regex_variable_hander_variableName = 'var: \=\zs.\+\ze '
 let s:regex_class_prefix = 'class:'
 let s:regex_open_delimiter = '{'
 let s:regex_close_delimiter = '}'
