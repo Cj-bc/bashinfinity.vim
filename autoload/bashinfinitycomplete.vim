@@ -126,7 +126,7 @@ endfunction
 function bashinfinitycomplete#get_variable_names(file)
   let s:ret_variables = []
   for line in readfile(a:file)
-    for name in s:primitive_types + map(bashinfinitycomplete#get_class_names(a:file), 'v:val.word')
+    for name in map(deepcopy(s:primitive_types), 'v:val.word') + map(bashinfinitycomplete#get_class_names(a:file), 'v:val.word')
       if line =~ '^ *' . name . ' '
         call add(s:ret_variables, {'word': matchstr(line, name . ' \zs.*\ze'), 'kind': 'v'})
       endif
@@ -179,7 +179,7 @@ endfunction
 function bashinfinitycomplete#get_class_properties(file, class_name)
   let s:ret_properites = []
   for line in bashinfinitycomplete#get_class_region(a:file, a:class_name)
-    for type in s:primitive_types + map(bashinfinitycomplete#get_class_names(a:file), 'v:val.word')
+    for type in map(deepcopy(s:primitive_types), 'v:val.word') + map(bashinfinitycomplete#get_class_names(a:file), 'v:val.word')
       if line =~ s:regex_no_comment_out . type . ' .*'
         call add(s:ret_properites, {'word': matchstr(line, type . ' \zs.*\ze *'), 'kind': 'v'}) " TODO: regex `.*` should be improved
       endif
