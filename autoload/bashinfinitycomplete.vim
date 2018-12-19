@@ -75,11 +75,11 @@ let s:regex_no_comment_out = '[^#] *'
 
 " ========== utility functions =========== {{{1
 
-" bashinfinity#get_class_region {{{2
+" bashinfinitycomplete#get_class_region {{{2
 " get whole code of given class
 " @param <string:file> file path
 " @param <string:class_name> class name
-function bashinfinity#get_class_region(file, class_name)
+function bashinfinitycomplete#get_class_region(file, class_name)
   let s:ret_codes = []
   let s:is_inside_class = v:false
   let s:delimiter_nest = 0
@@ -104,11 +104,11 @@ endfunction
 
 " }}}
 
-" bashinfinity#get_class_names {{{2
+" bashinfinitycomplete#get_class_names {{{2
 " get defined class names in the file
 " @param <string:file> file path
 " @return <list:class_names> detected class names
-function bashinfinity#get_class_names(file)
+function bashinfinitycomplete#get_class_names(file)
   let s:classes = []
   for line in readfile(a:file)
     if line =~ '^class:*'
@@ -119,11 +119,11 @@ function bashinfinity#get_class_names(file)
 endfunction
 " }}}
 
-" bashinfinity#get_variable_names {{{2
+" bashinfinitycomplete#get_variable_names {{{2
 " get defined variable names in the file
 " @param <string:file> file path
 " @return <list:variable_names> detected variable names
-function bashinfinity#get_variable_names(file)
+function bashinfinitycomplete#get_variable_names(file)
   let s:ret_variables = []
   for line in readfile(a:file)
     for name in s:primitive_types + bashinfinity#get_class_names(a:file)
@@ -136,12 +136,12 @@ function bashinfinity#get_variable_names(file)
 endfunction
 " }}}
 
-" bashinfinity#get_class_method_names {{{2
+" bashinfinitycomplete#get_class_method_names {{{2
 " get all class methods for the class
 " @param <string:path> file path
 " @param <list:class_names> class name
 " @return <list:methods_names> detected class method names
-function bashinfinity#get_class_method_names(file, class_names)
+function bashinfinitycomplete#get_class_method_names(file, class_names)
   let s:ret_method_names = []
   for line in readfile(a:file)
     for name in a:class_names
@@ -154,11 +154,11 @@ function bashinfinity#get_class_method_names(file, class_names)
 endfunction
 "" }}}
 
-" bashinfinity#get_instant_method_names {{{2
+" bashinfinitycomplete#get_instant_method_names {{{2
 " get all instance method names of given class
 " @param <string:file> file path
 " @param <list:class_names> class name
-function bashinfinity#get_instant_method_names(file, class_names)
+function bashinfinitycomplete#get_instant_method_names(file, class_names)
   let s:ret_method_names = []
   for line in readfile(a:file)
     for name in a:class_names
@@ -171,12 +171,12 @@ function bashinfinity#get_instant_method_names(file, class_names)
 endfunction
 " }}}
 
-" bashinfinity#get_class_properties {{{2
+" bashinfinitycomplete#get_class_properties {{{2
 " get properties of given class
 " @param <string:file> file path
 " @param <string:class_name> class name
 " @return <list:properties> properties of <class_name>
-function bashinfinity#get_class_properties(file, class_name)
+function bashinfinitycomplete#get_class_properties(file, class_name)
   let s:ret_properites = []
   for line in bashinfinity#get_class_region(a:file, a:class_name)
     for type in s:primitive_types + bashinfinity#get_class_names(a:file)
@@ -194,7 +194,7 @@ endfunction
 
 " omni func {{{1
 " reffer to `:h E839`
-function! bashinfinity#Bashinfinity_omni_func(findstart, base)
+function! bashinfinitycomplete#Bashinfinity_omni_func(findstart, base)
   let s:line = getline('.')
   let s:file = expand('%')
   if a:findstart
