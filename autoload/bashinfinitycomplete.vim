@@ -223,7 +223,7 @@ function! bashinfinitycomplete#Bashinfinity_omni_func(findstart, base)
         let s:class_names = bashinfinitycomplete#get_class_names(s:file)
         let s:variable_names = bashinfinitycomplete#get_variable_names(s:file)
         for word in s:class_names
-          if word =~ '^' . a:base
+          if word.word =~ '^' . a:base
             call complete_add(word)
           endif
           if complete_check()
@@ -235,10 +235,10 @@ function! bashinfinitycomplete#Bashinfinity_omni_func(findstart, base)
         let s:instance_methods = bashinfinitycomplete#get_instant_method_names(s:file, [s:class_name])
         let s:properties = bashinfinitycomplete#get_class_properties(s:file, s:class_name)
 
-        let s:class_methods = map(s:class_methods, { key, val -> matchstr(val,'::\zs.*') })
-        let s:instance_methods = map(s:instance_methods, {key, val -> matchstr(v:val,'\.\zs.*') })
+        let s:class_methods = map(s:class_methods, { key, val -> matchstr(val.word,'::\zs.*') })
+        let s:instance_methods = map(s:instance_methods, {key, val -> matchstr(val.word,'\.\zs.*') })
         for word in s:class_methods + s:instance_methods + s:properties
-          if word =~ '^' . a:base
+          if word.word =~ '^' . a:base
             call complete_add(word)
           endif
           if complete_check()
@@ -250,12 +250,12 @@ function! bashinfinitycomplete#Bashinfinity_omni_func(findstart, base)
       " complete common keywords & class/variable names
       " TODO:  support names in imported files. I think it's better to save the
       "       list so that we don't have to re-search for each time.
-      let s:class_names = bashinfinitycomplete#get_class_names(s:file)
+      let s:class_names = map(bashinfinitycomplete#get_class_names(s:file), 'v:val.word')
       let s:variable_names = bashinfinitycomplete#get_variable_names(s:file)
       let s:class_methods = bashinfinitycomplete#get_class_method_names(s:file,s:class_names)
       let s:instance_methods = bashinfinitycomplete#get_instant_method_names(s:file, s:class_names)
       for word in s:keywords + s:class_names + s:variable_names + s:class_methods + s:instance_methods
-        if word =~ '^' . a:base
+        if word.word =~ '^' . a:base
           call complete_add(word)
         endif
         if complete_check()
