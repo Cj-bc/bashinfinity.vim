@@ -112,7 +112,7 @@ function bashinfinity#get_class_names(file)
   let s:classes = []
   for line in readfile(a:file)
     if line =~ '^class:*'
-      call add(s:classes, matchstr(line, 'class:\zs.*\ze() *{*'))
+      call add(s:classes, {'word': matchstr(line, 'class:\zs.*\ze() *{*'), 'kind': 'f', )
     endif
   endfor
   return s:classes
