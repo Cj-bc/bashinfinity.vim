@@ -126,7 +126,7 @@ endfunction
 function bashinfinitycomplete#get_variable_names(file)
   let s:ret_variables = []
   for line in readfile(a:file)
-    for name in s:primitive_types + bashinfinity#get_class_names(a:file)
+    for name in s:primitive_types + map(bashinfinitycomplete#get_class_names(a:file), 'v:val.word')
       if line =~ '^ *' . name . ' '
         call add(s:ret_variables, {'word': matchstr(line, name . ' \zs.*\ze'), 'kind': 'v'})
       endif
@@ -178,8 +178,8 @@ endfunction
 " @return <list:properties> properties of <class_name>
 function bashinfinitycomplete#get_class_properties(file, class_name)
   let s:ret_properites = []
-  for line in bashinfinity#get_class_region(a:file, a:class_name)
-    for type in s:primitive_types + bashinfinity#get_class_names(a:file)
+  for line in bashinfinitycomplete#get_class_region(a:file, a:class_name)
+    for type in s:primitive_types + map(bashinfinitycomplete#get_class_names(a:file), 'v:val.word')
       if line =~ s:regex_no_comment_out . type . ' .*'
         call add(s:ret_properites, {'word': matchstr(line, type . ' \zs.*\ze *'), 'kind': 'v'}) " TODO: regex `.*` should be improved
       endif
@@ -220,8 +220,8 @@ function! bashinfinitycomplete#Bashinfinity_omni_func(findstart, base)
       let s:class_name = matchstr(s:line, s:regex_variable_hander_variableName)
 
       if s:class_name == ''
-        let s:class_names = bashinfinity#get_class_names(s:file)
-        let s:variable_names = bashinfinity#get_variable_names(s:file)
+        let s:class_names = bashinfinitycomplete#get_class_names(s:file)
+        let s:variable_names = bashinfinitycomplete#get_variable_names(s:file)
         for word in s:class_names
           if word =~ '^' . a:base
             call complete_add(word)
@@ -231,9 +231,9 @@ function! bashinfinitycomplete#Bashinfinity_omni_func(findstart, base)
           endif
         endfor
       else
-        let s:class_methods = bashinfinity#get_class_method_names(s:file, [s:class_name])
-        let s:instance_methods = bashinfinity#get_instant_method_names(s:file, [s:class_name])
-        let s:properties = bashinfinity#get_class_properties(s:file, s:class_name)
+        let s:class_methods = bashinfinitycomplete#get_class_method_names(s:file, [s:class_name])
+        let s:instance_methods = bashinfinitycomplete#get_instant_method_names(s:file, [s:class_name])
+        let s:properties = bashinfinitycomplete#get_class_properties(s:file, s:class_name)
 
         let s:class_methods = map(s:class_methods, { key, val -> matchstr(val,'::\zs.*') })
         let s:instance_methods = map(s:instance_methods, {key, val -> matchstr(v:val,'\.\zs.*') })
@@ -250,10 +250,10 @@ function! bashinfinitycomplete#Bashinfinity_omni_func(findstart, base)
       " complete common keywords & class/variable names
       " TODO:  support names in imported files. I think it's better to save the
       "       list so that we don't have to re-search for each time.
-      let s:class_names = bashinfinity#get_class_names(s:file)
-      let s:variable_names = bashinfinity#get_variable_names(s:file)
-      let s:class_methods = bashinfinity#get_class_method_names(s:file, s:class_names)
-      let s:instance_methods = bashinfinity#get_instant_method_names(s:file, s:class_names)
+      let s:class_names = bashinfinitycomplete#get_class_names(s:file)
+      let s:variable_names = bashinfinitycomplete#get_variable_names(s:file)
+      let s:class_methods = bashinfinitycomplete#get_class_method_names(s:file,s:class_names)
+      let s:instance_methods = bashinfinitycomplete#get_instant_method_names(s:file, s:class_names)
       for word in s:keywords + s:class_names + s:variable_names + s:class_methods + s:instance_methods
         if word =~ '^' . a:base
           call complete_add(word)
