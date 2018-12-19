@@ -33,34 +33,34 @@ let s:primitive_types = [ 'array',
                        \]
 
 " standard libraries
-let s:standard_libraries = [ 'Array/Contains',
-                           \ 'Array/Intersect',
-                           \ 'Array/List',
-                           \ 'Array/Reverse',
-                           \ 'String/GetSpaces',
-                           \ 'String/IsNumber',
-                           \ 'String/SanitizeForVariable',
-                           \ 'String/SlashReplacement',
-                           \ 'String/UUID',
-                           \ 'TypePrimitives/boolean',
-                           \ 'TypePrimitives/integer',
-                           \ 'TypePrimitives/map',
-                           \ 'TypePrimitives/string',
-                           \ 'UI/Color',
-                           \ 'UI/Color.var',
-                           \ 'UI/Console',
-                           \ 'UI/Cursor',
-                           \ 'util/bash4',
-                           \ 'util/class',
-                           \ 'util/command',
-                           \ 'util/exception',
-                           \ 'util/log',
-                           \ 'util/namedParameters',
-                           \ 'util/pipe',
-                           \ 'util/test',
-                           \ 'util/tryCatch',
-                           \ 'util/type',
-                           \ 'util/variable'
+let s:standard_libraries = [ { 'word': 'Array/Contains', 'menu': 'library' },
+                           \ { 'word': 'Array/Intersect', 'menu': 'library' },
+                           \ { 'word': 'Array/List', 'menu': 'library' },
+                           \ { 'word': 'Array/Reverse', 'menu': 'library' },
+                           \ { 'word': 'String/GetSpaces', 'menu': 'library' },
+                           \ { 'word': 'String/IsNumber', 'menu': 'library' },
+                           \ { 'word': 'String/SanitizeForVariable', 'menu': 'library' },
+                           \ { 'word': 'String/SlashReplacement', 'menu': 'library' },
+                           \ { 'word': 'String/UUID', 'menu': 'library' },
+                           \ { 'word': 'TypePrimitives/boolean', 'menu': 'library' },
+                           \ { 'word': 'TypePrimitives/integer', 'menu': 'library' },
+                           \ { 'word': 'TypePrimitives/map', 'menu': 'library' },
+                           \ { 'word': 'TypePrimitives/string', 'menu': 'library' },
+                           \ { 'word': 'UI/Color', 'menu': 'library' },
+                           \ { 'word': 'UI/Color.var', 'menu': 'library' },
+                           \ { 'word': 'UI/Console', 'menu': 'library' },
+                           \ { 'word': 'UI/Cursor', 'menu': 'library' },
+                           \ { 'word': 'util/bash4', 'menu': 'library' },
+                           \ { 'word': 'util/class', 'menu': 'library' },
+                           \ { 'word': 'util/command', 'menu': 'library' },
+                           \ { 'word': 'util/exception', 'menu': 'library' },
+                           \ { 'word': 'util/log', 'menu': 'library' },
+                           \ { 'word': 'util/namedParameters', 'menu': 'library' },
+                           \ { 'word': 'util/pipe', 'menu': 'library' },
+                           \ { 'word': 'util/test', 'menu': 'library' },
+                           \ { 'word': 'util/tryCatch', 'menu': 'library' },
+                           \ { 'word': 'util/type', 'menu': 'library' },
+                           \ { 'word': 'util/variable', 'menu': 'library' }
                           \]
 
 " regexes
@@ -208,7 +208,7 @@ function! bashinfinitycomplete#Bashinfinity_omni_func(findstart, base)
       " complete standard library names
       " TODO: offer blib libraries
       for lib in s:standard_libraries
-        if lib =~ '^' . a:base
+        if lib.word =~ '^' . a:base
           call complete_add(lib)
         endif
         if complete_check()
