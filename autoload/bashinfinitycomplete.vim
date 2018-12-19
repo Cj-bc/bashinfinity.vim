@@ -25,11 +25,11 @@ let s:DICTIONARY_PATH = s:bashinfinityVim_path . '/dictionary/bashinfinity.vim'
 " keywords defined in Dictionary
 let s:keywords = readfile(s:DICTIONARY_PATH)
 
-let s:primitive_types = [ 'array',
-                        \ 'string',
-                        \ 'integer',
-                        \ 'boolean',
-                        \ 'map'
+let s:primitive_types = [ { 'word': 'array', 'menu': 'PrimitiveType' },
+                        \ { 'word': 'string', 'menu': 'PrimitiveType' },
+                        \ { 'word': 'integer', 'menu': 'PrimitiveType' },
+                        \ { 'word': 'boolean', 'menu': 'PrimitiveType' },
+                        \ { 'word': 'map', 'menu': 'PrimitiveType' }
                        \]
 
 " standard libraries
