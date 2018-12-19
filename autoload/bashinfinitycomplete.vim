@@ -112,7 +112,7 @@ function bashinfinitycomplete#get_class_names(file)
   let s:classes = []
   for line in readfile(a:file)
     if line =~ '^class:*'
-      call add(s:classes, {'word': matchstr(line, 'class:\zs.*\ze() *{*'), 'kind': 'f', )
+      call add(s:classes, {'word': matchstr(line, 'class:\zs.*\ze() *{*'), 'kind': 'f'} )
     endif
   endfor
   return s:classes
@@ -128,7 +128,7 @@ function bashinfinitycomplete#get_variable_names(file)
   for line in readfile(a:file)
     for name in s:primitive_types + bashinfinity#get_class_names(a:file)
       if line =~ '^ *' . name . ' '
-        call add(s:ret_variables, matchstr(line, name . ' \zs.*\ze'))
+        call add(s:ret_variables, {'word': matchstr(line, name . ' \zs.*\ze'), 'kind': 'v'})
       endif
     endfor
   endfor
@@ -146,7 +146,7 @@ function bashinfinitycomplete#get_class_method_names(file, class_names)
   for line in readfile(a:file)
     for name in a:class_names
       if line =~ ' *' . name . '::.*'
-        call add(s:ret_method_names, matchstr(line, name . '::.*\ze()'))
+        call add(s:ret_method_names, { 'word': matchstr(line, name . '::.*\ze()'), 'kind': 'f'})
       endif
     endfor
   endfor
@@ -163,7 +163,7 @@ function bashinfinitycomplete#get_instant_method_names(file, class_names)
   for line in readfile(a:file)
     for name in a:class_names
       if line =~ ' *' . name . '\..*'
-        call add(s:ret_method_names, matchstr(line, name . '\..*\ze()'))
+        call add(s:ret_method_names, { 'word': matchstr(line, name . '\..*\ze()'), 'kind': 'f'})
       endif
     endfor
   endfor
@@ -181,7 +181,7 @@ function bashinfinitycomplete#get_class_properties(file, class_name)
   for line in bashinfinity#get_class_region(a:file, a:class_name)
     for type in s:primitive_types + bashinfinity#get_class_names(a:file)
       if line =~ s:regex_no_comment_out . type . ' .*'
-        call add(s:ret_properites, matchstr(line, type . ' \zs.*\ze *')) " TODO: regex `.*` should be improved
+        call add(s:ret_properites, {'word': matchstr(line, type . ' \zs.*\ze *'), 'kind': 'v'}) " TODO: regex `.*` should be improved
       endif
     endfor
   endfor
